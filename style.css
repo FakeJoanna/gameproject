@@ -27,6 +27,12 @@ td {
     border: 2px solid;
 }
 
+.crab {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
 #controls {
     height: 10vh;
     display: flex;
