@@ -16,6 +16,8 @@
     font-size: 2rem;
 }
 
+/*
+
 table  {
     margin: auto;
     height: 60vh;
@@ -27,10 +29,28 @@ td {
     border: 2px solid;
 }
 
+*/
+
+#gameTable {
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    height: 60vh;
+    width: 80%;
+    border: 2px solid;
+}
+
+.column {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    width: 100%;
+    border: 2px solid;
+}
+
 .crab {
-    display: block;
-    max-width: 100%;
-    height: auto;
+    margin: 10px 0px;
+    max-width: 80%;
 }
 
 #controls {
