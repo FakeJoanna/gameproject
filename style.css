@@ -22,6 +22,7 @@ body {
 
 
 #gameTable {
+    position: relative;
     display: flex;
     justify-content: space-between;
     margin: auto;
@@ -31,6 +32,7 @@ body {
 }
 
 #ship {
+    z-index: 10;
     position: absolute;
 }
 
@@ -63,6 +65,10 @@ body {
     position: relative;
     top: 3vh;
     max-width: 6vh;
+
+}
+
+.animateUpwards {
     animation-name: crabMoveUp;
     animation-duration: 0s;
     animation-iteration-count: infinite;
@@ -79,10 +85,13 @@ body {
     position: relative;
     top: -3vh;
     max-width: 6vh;
+}
+
+.animateDownwards {
     animation-name: crabMoveDown;
     animation-duration: 0s;
     animation-iteration-count: infinite;
-    animation-timing-function: linear;
+    animation-timing-function: linear
 }
 
 #controls {

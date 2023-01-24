@@ -1,16 +1,20 @@
-//timer function
+//timer and game state initial flags
+
 let timeLeft = 30;
-let timer = document.getElementById("actualTime");
+let timer = document.getElementById("timer");
 let timerId
 let fired = false;
 
-document.onkeydown = function () {
+//this function flags game start
+
+document.onkeydown = function gameStart () {
     if (fired === false) {
-        document.getElementById("timer").innerText = "Timer:";
         timerId = setInterval(timerCountdown, 1000);
         fired = true;
     }
 }
+
+//this function controls the timer
 
 function timerCountdown() {
     if (timeLeft == -1) {
@@ -19,14 +23,40 @@ function timerCountdown() {
     }
 
     else {
-        timer.innerHTML = timeLeft.toString() + "s";
+        timer.innerHTML = `Timer: ${timeLeft}s`
         timeLeft--;
     }
 }
 
-/* speed functionality
-standard speed 3 - 10
-*/
+//ship code
+
+
+
+let ship = document.getElementById("ship");
+
+ship.style.top
+
+let shipPosition = {
+    x: ship.getBoundingClientRect().x,
+    y: ship.getBoundingClientRect().y,
+}
+let moveRate = 10;
+
+function updatePostion(offset) {
+    shipPosition.x += offset;
+    shipPosition.y += offset;
+}
+
+
+
+
+//this function calculates a random speed/animation duration between 3 and 10 seconds
+
+function randomSpeed() {
+    return (((Math.random() * 7) + 3) * speedMultiplier);
+}
+
+//this function handles speed mutiplier for randomSpeed
 
 let speedMultiplier = 1;
 document.getElementById("speedMult").defaultValue = 1;
@@ -37,32 +67,27 @@ function updateValue() {
     reroll();
 }
 
-function randomSpeed() {
-    return (((Math.random() * 7) + 3) * speedMultiplier);
-}
+/*this function queries all elements with animation classes
+and randomises them calling on randomSpeed*/
 
-//get array of nodes with .crabTop class and iterate over them applying a random speed
-let crabsDownwards = [...document.querySelectorAll(".crabTop")];
+let crabsDownwards = [...document.querySelectorAll(".animateDownwards")];
+let crabsUpwards = [...document.querySelectorAll(".animateUpwards")];
 
-function rerollCrabsDownwards() {
+function reCalculateAnimationDuration () {
     crabsDownwards.forEach(i => i.style.animationDuration = randomSpeed().toString() + "s");
-    return;
-}
-
-let crabsUpwards = [...document.querySelectorAll(".crabBottom")];
-
-function rerollCrabsUpwards() {
     crabsUpwards.forEach(i => i.style.animationDuration = randomSpeed().toString() + "s");
-    return;
 }
 
-//reroll button functionality
+
+//this function calls on reCalculateAnimationDuration and resets the timer
+
 function reroll () {
-    rerollCrabsDownwards();
-    rerollCrabsUpwards();
+    reCalculateAnimationDuration();
+    timer.innerHTML = "Press any key"
     clearInterval(timerId);
     fired = false;
     timeLeft = 30;
+    alert(1);
 }
 
-document.getElementById("reroll").onclick = reroll;
+document.getElementById("reroll").onclick = reroll; //<---- weird bug
