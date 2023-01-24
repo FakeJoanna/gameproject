@@ -11,7 +11,7 @@ body {
     font-size: 5rem;
 }
 
-#timer {
+#timerDiv {
     height: 10vh;
     display: flex;
     justify-content: center;
@@ -35,34 +35,34 @@ body {
 }
 
 .columnDown {
-    position: relative;
     display: flex;
     justify-content: center;
     align-items: flex-end;
     width: 100%;
     border: 2px solid;
+    overflow: hidden;
 }
 
 .columnUp {
-    position: relative;
     display: flex;
     justify-content: center;
     align-items: flex-start;
     width: 100%;
     border: 2px solid;
+    overflow: hidden;
 }
 
 
 @keyframes crabMoveUp {
     0% {transform: translateY(0)}
-    50% {transform: translateY(-54vh);}
+    50% {transform: translateY(-60vh);}
     100% {transform: translateY(0);}
 }
 
 .crabBottom {
-    position: absolute;
-    margin: 10px 0px;
-    max-width: 80%;
+    position: relative;
+    top: 3vh;
+    max-width: 6vh;
     animation-name: crabMoveUp;
     animation-duration: 0s;
     animation-iteration-count: infinite;
@@ -71,14 +71,14 @@ body {
 
 @keyframes crabMoveDown {
     0% {transform: translateY(0)}
-    50% {transform: translateY(54vh);}
+    50% {transform: translateY(60vh);}
     100% {transform: translateY(0);}
 }
 
 .crabTop {
-    position:absolute;
-    margin: 10px 0px;
-    max-width: 80%;
+    position: relative;
+    top: -3vh;
+    max-width: 6vh;
     animation-name: crabMoveDown;
     animation-duration: 0s;
     animation-iteration-count: infinite;
