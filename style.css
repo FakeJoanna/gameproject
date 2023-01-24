@@ -93,11 +93,31 @@ body {
     font-family: monospace;
 }
 
+#smStyle {
+    display: flex;
+    align-items: center;
+    margin-top: 10vh;
+    background-color: #ACD1AF;
+    border-color: #9AB19C;
+    border: 2px;
+    font-size: 1.2rem;
+}
+
+#speedMult {
+    outline: none;
+    font-size: 1rem;
+    text-align: right;
+    border: none;
+    background-color:#ACD1AF;
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+}
+
 #reroll {
 
     font-size: 2rem;
     font-family: monospace;
-    margin-top: 2vh;
+    margin-top: 10vh;
     height: 8vh;
     width: 20%;
     background-color: #EB5E55;

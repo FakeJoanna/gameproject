@@ -1,14 +1,44 @@
-//timer
+//timer function
+let timeLeft = 30;
+let timer = document.getElementById("actualTime");
+let timerId
+let fired = false;
 
 document.onkeydown = function () {
-    document.getElementById("timer").innerText = "Timer:";
-    document.getElementById("actualTime").innerHTML = "30s";
-    
+    if (fired === false) {
+        document.getElementById("timer").innerText = "Timer:";
+        timerId = setInterval(timerCountdown, 1000);
+        fired = true;
+    }
 }
 
-/* Standard speed of the crabs shall be 3 - 10 */
+function timerCountdown() {
+    if (timeLeft == -1) {
+        clearInterval(timerId);
+        //game over splash screen
+    }
+
+    else {
+        timer.innerHTML = timeLeft.toString() + "s";
+        timeLeft--;
+    }
+}
+
+/* speed functionality
+standard speed 3 - 10
+*/
+
+let speedMultiplier = 1;
+document.getElementById("speedMult").defaultValue = 1;
+document.getElementById("speedMult").addEventListener("change", updateValue)
+
+function updateValue() {
+    speedMultiplier = 1/document.getElementById("speedMult").value;
+    reroll();
+}
+
 function randomSpeed() {
-    return (((Math.random() * 7) + 3));
+    return (((Math.random() * 7) + 3) * speedMultiplier);
 }
 
 //get array of nodes with .crabTop class and iterate over them applying a random speed
@@ -27,8 +57,12 @@ function rerollCrabsUpwards() {
 }
 
 //reroll button functionality
-document.getElementById("reroll").onclick = function () {
+function reroll () {
     rerollCrabsDownwards();
     rerollCrabsUpwards();
-    return;
+    clearInterval(timerId);
+    fired = false;
+    timeLeft = 30;
 }
+
+document.getElementById("reroll").onclick = reroll;
