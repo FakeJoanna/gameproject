@@ -16,31 +16,21 @@
     font-size: 2rem;
 }
 
-/*
-
-table  {
-    margin: auto;
-    height: 60vh;
-    width: 80%;
-    border: 2px solid;
-}
-
-td {
-    border: 2px solid;
-}
-
-*/
 
 #gameTable {
     display: flex;
     justify-content: space-between;
     margin: auto;
     height: 60vh;
-    width: 80%;
+    width: 60%;
     border: 2px solid;
 }
 
-.column {
+#ship {
+    position: absolute;
+}
+
+.columnDown {
     display: flex;
     justify-content: center;
     align-items: flex-end;
@@ -48,9 +38,44 @@ td {
     border: 2px solid;
 }
 
-.crab {
+.columnUp {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    border: 2px solid;
+}
+
+
+@keyframes crabMoveUp {
+    0% {}
+    50% {transform: translateY(-54vh);}
+    100% {}
+}
+
+.crabBottom {
+    position: relative;
     margin: 10px 0px;
     max-width: 80%;
+    animation-name: crabMoveUp;
+    animation-duration: 0s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes crabMoveDown {
+    0% {transform: translateY(0)}
+    50% {transform: translateY(54vh);}
+    100% {transform: translateY(0);}
+}
+
+.crabTop {
+    margin: 10px 0px;
+    max-width: 80%;
+    animation-name: crabMoveDown;
+    animation-duration: 0s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
 }
 
 #controls {
