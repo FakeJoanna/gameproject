@@ -32,20 +32,54 @@ function timerCountdown() {
 
 
 
-let ship = document.getElementById("ship");
-
-ship.style.top
+let ship = document.querySelector("#ship");
 
 let shipPosition = {
-    x: ship.getBoundingClientRect().x,
-    y: ship.getBoundingClientRect().y,
+    x: 0,
+    y: -3,
 }
-let moveRate = 10;
+document.addEventListener("keydown", (keypress) => {
 
-function updatePostion(offset) {
-    shipPosition.x += offset;
-    shipPosition.y += offset;
-}
+    console.log(shipPosition)
+
+    switch (keypress.key) {
+        case "ArrowUp":
+            shipPosition.y -= 3;
+            break;
+        case "ArrowDown":
+            shipPosition.y += 3;
+            break;
+        case "ArrowLeft":
+            shipPosition.x -= 10;
+            break;
+        case "ArrowRight":
+            shipPosition.x += 10;
+            break;
+    }
+
+    console.log(shipPosition)
+    
+    if (shipPosition.x > 90) {
+        shipPosition.x -= 10;
+        return;
+    }
+
+    else if (shipPosition.x < 0) {
+        shipPosition.x += 10;
+        return;
+    }
+
+    else if (shipPosition.y > 57) {
+        shipPosition.y -= 3;
+    }
+
+    else if (shipPosition.y < -3) {
+        shipPosition.y += 3;
+    }
+    
+    ship.style.top = `${shipPosition.y}vh`;
+    ship.style.left = `${shipPosition.x}%`
+});
 
 
 

@@ -34,6 +34,13 @@ body {
 #ship {
     z-index: 10;
     position: absolute;
+    width: 10%;
+    top: -3vh;
+    left: 0;
+}
+
+#shipImage {
+    width: 100%;
 }
 
 .columnDown {
@@ -64,7 +71,7 @@ body {
 .crabBottom {
     position: relative;
     top: 3vh;
-    max-width: 6vh;
+    max-width: 60%;
 
 }
 
@@ -84,7 +91,7 @@ body {
 .crabTop {
     position: relative;
     top: -3vh;
-    max-width: 6vh;
+    max-width: 60%;
 }
 
 .animateDownwards {
