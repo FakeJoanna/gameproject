@@ -81,7 +81,7 @@ document.addEventListener("keydown", (keypress) => {
 //code for spawning projectiles where ship is located
 
 let bomb = document.createElement("img");
-bomb.setAttribute("src", "/placerholderbomb.png");
+bomb.setAttribute("src", "/images/ placerholderbomb.png");
 bomb.classList.add("bomb")
 
 document.addEventListener("keyup", (keypress) => {
