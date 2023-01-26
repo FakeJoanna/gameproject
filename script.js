@@ -30,8 +30,6 @@ function timerCountdown() {
 
 //ship code
 
-
-
 let ship = document.querySelector("#ship");
 
 let shipPosition = {
@@ -44,10 +42,10 @@ document.addEventListener("keydown", (keypress) => {
 
     switch (keypress.key) {
         case "ArrowUp":
-            shipPosition.y -= 3;
+            shipPosition.y -= 1.5;
             break;
         case "ArrowDown":
-            shipPosition.y += 3;
+            shipPosition.y += 1.5;
             break;
         case "ArrowLeft":
             shipPosition.x -= 10;
@@ -57,30 +55,45 @@ document.addEventListener("keydown", (keypress) => {
             break;
     }
 
-    console.log(shipPosition)
-    
+//hack boundary code
+
     if (shipPosition.x > 90) {
         shipPosition.x -= 10;
-        return;
     }
 
     else if (shipPosition.x < 0) {
         shipPosition.x += 10;
-        return;
     }
 
     else if (shipPosition.y > 57) {
-        shipPosition.y -= 3;
+        shipPosition.y -= 1.5;
     }
 
     else if (shipPosition.y < -3) {
-        shipPosition.y += 3;
+        shipPosition.y += 1.5;
     }
     
-    ship.style.top = `${shipPosition.y}vh`;
+    ship.style.top = `${shipPosition.y}vh`;  
     ship.style.left = `${shipPosition.x}%`
 });
 
+ 
+//code for spawning projectiles where ship is located
+
+let bomb = document.createElement("img");
+bomb.setAttribute("src", "/placerholderbomb.png");
+bomb.classList.add("bomb")
+
+document.addEventListener("keyup", (keypress) => {
+    if (keypress.key === " ")  {
+        bomb.style.top = `${shipPosition.y}vh`;
+        bomb.style.left = `${shipPosition.x}%`;
+        document.getElementById("gameTable").appendChild(bomb);
+        bomb.addEventListener("animationend", () => {
+            bomb.remove();
+        }) 
+    }
+});
 
 
 
@@ -121,7 +134,11 @@ function reroll () {
     clearInterval(timerId);
     fired = false;
     timeLeft = 30;
-    alert(1);
+    alert(1)
 }
 
-document.getElementById("reroll").onclick = reroll; //<---- weird bug
+let rerollButton = document.getElementById("reroll") //<---- weird bug
+rerollButton.addEventListener("click", () => {
+    rerollButton.blur();
+    reroll();
+})
