@@ -91,6 +91,7 @@ body {
     animation-duration: 0s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
+    animation-delay: 1s;
 }
 
 @keyframes crabMoveDown {
@@ -109,7 +110,8 @@ body {
     animation-name: crabMoveDown;
     animation-duration: 0s;
     animation-iteration-count: infinite;
-    animation-timing-function: linear
+    animation-timing-function: linear;
+    animation-delay: 1s;
 }
 
 #controls {

@@ -9,6 +9,7 @@ let fired = false;
 
 document.onkeydown = function gameStart () {
     if (fired === false) {
+        reCalculateAnimationDuration();
         timerId = setInterval(timerCountdown, 1000);
         fired = true;
     }
@@ -81,7 +82,7 @@ document.addEventListener("keydown", (keypress) => {
 //code for spawning projectiles where ship is located
 
 let bomb = document.createElement("img");
-bomb.setAttribute("src", "/images/ placerholderbomb.png");
+bomb.setAttribute("src", "/images/placerholderbomb.png");
 bomb.classList.add("bomb")
 
 document.addEventListener("keyup", (keypress) => {
@@ -120,7 +121,7 @@ and randomises them calling on randomSpeed*/
 let crabsDownwards = [...document.querySelectorAll(".animateDownwards")];
 let crabsUpwards = [...document.querySelectorAll(".animateUpwards")];
 
-function reCalculateAnimationDuration () {
+function reCalculateAnimationDuration() {
     crabsDownwards.forEach(i => i.style.animationDuration = randomSpeed().toString() + "s");
     crabsUpwards.forEach(i => i.style.animationDuration = randomSpeed().toString() + "s");
 }
@@ -128,16 +129,18 @@ function reCalculateAnimationDuration () {
 
 //this function calls on reCalculateAnimationDuration and resets the timer
 
-function reroll () {
+function reroll() {
+    /*
     reCalculateAnimationDuration();
     timer.innerHTML = "Press any key"
     clearInterval(timerId);
     fired = false;
-    timeLeft = 30;
-    alert(1)
+    timeLeft = 30; 
+    */
+    location.reload();
 }
 
-let rerollButton = document.getElementById("reroll") //<---- weird bug
+let rerollButton = document.getElementById("reroll")
 rerollButton.addEventListener("click", () => {
     rerollButton.blur();
     reroll();
