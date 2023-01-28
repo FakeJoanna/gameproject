@@ -6,7 +6,9 @@ let timerId
 let fired = false;
 let crabsDownwards = [...document.querySelectorAll(".animateDownwards")];
 let crabsUpwards = [...document.querySelectorAll(".animateUpwards")];
-
+let bombFall1 = new Audio("./images/bombfall.m4a");
+let bombFall2 = new Audio("./images/bombfall.m4a");
+let bombFall3 = new Audio("./images/bombfall.m4a");
 //this function flags game start
 
 document.onkeydown = function gameStart () {
@@ -127,6 +129,7 @@ document.addEventListener("keyup", (keypress) => {
             bomb1.style.top = `${shipPosition.y}vh`;
             bomb1.style.left = `${shipPosition.x}%`;
             document.getElementById("gameTable").appendChild(bomb1);
+            bombFall1.play();
             bomb1.addEventListener("animationend", () => {
             bomb1.remove();
             bomb1Fired = false;
@@ -138,6 +141,7 @@ document.addEventListener("keyup", (keypress) => {
             bomb2.style.top = `${shipPosition.y}vh`;
             bomb2.style.left = `${shipPosition.x}%`;
             document.getElementById("gameTable").appendChild(bomb2);
+            bombFall2.play();
             bomb2.addEventListener("animationend", () => {
             bomb2.remove();
             bomb2Fired = false;
@@ -149,6 +153,7 @@ document.addEventListener("keyup", (keypress) => {
             bomb3.style.top = `${shipPosition.y}vh`;
             bomb3.style.left = `${shipPosition.x}%`;
             document.getElementById("gameTable").appendChild(bomb3);
+            bombFall3.play();
             bomb3.addEventListener("animationend", () => {
             bomb3.remove();
             bomb3Fired = false;
