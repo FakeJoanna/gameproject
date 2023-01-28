@@ -52,6 +52,7 @@ body {
     width: 10%;
     animation-name: bombFall;
     animation-duration: 3s;
+    animation-iteration-count: 1;
 }
 
 .columnDown {

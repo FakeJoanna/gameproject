@@ -38,9 +38,6 @@ let shipPosition = {
     y: -3,
 }
 document.addEventListener("keydown", (keypress) => {
-
-    console.log(shipPosition)
-
     switch (keypress.key) {
         case "ArrowUp":
             shipPosition.y -= 1.5;
@@ -79,23 +76,59 @@ document.addEventListener("keydown", (keypress) => {
 });
 
  
-//code for spawning projectiles where ship is located
+//code for spawning 3 projectiles where ship is located
 
-let bomb = document.createElement("img");
-bomb.setAttribute("src", "/images/placerholderbomb.png");
-bomb.classList.add("bomb")
+let bomb1 = document.createElement("img");
+bomb1.setAttribute("src", "/images/placerholderbomb.png");
+bomb1.classList.add("bomb");
+let bomb1Fired = false;
+
+let bomb2 = document.createElement("img");
+bomb2.setAttribute("src", "/images/placerholderbomb.png");
+bomb2.classList.add("bomb");
+let bomb2Fired = false;
+
+let bomb3 = document.createElement("img");
+bomb3.setAttribute("src", "/images/placerholderbomb.png");
+bomb3.classList.add("bomb");
+let bomb3Fired = false;
 
 document.addEventListener("keyup", (keypress) => {
-    if (keypress.key === " ")  {
-        bomb.style.top = `${shipPosition.y}vh`;
-        bomb.style.left = `${shipPosition.x}%`;
-        document.getElementById("gameTable").appendChild(bomb);
-        bomb.addEventListener("animationend", () => {
-            bomb.remove();
-        }) 
+    if (keypress.key === " ") {
+        if (bomb1Fired === false) {
+            bomb1Fired = true
+            bomb1.style.top = `${shipPosition.y}vh`;
+            bomb1.style.left = `${shipPosition.x}%`;
+            document.getElementById("gameTable").appendChild(bomb1);
+            bomb1.addEventListener("animationend", () => {
+            bomb1.remove();
+            bomb1Fired = false;
+            })
+        }
+        
+        else if (bomb2Fired === false) {
+            bomb2Fired = true
+            bomb2.style.top = `${shipPosition.y}vh`;
+            bomb2.style.left = `${shipPosition.x}%`;
+            document.getElementById("gameTable").appendChild(bomb2);
+            bomb2.addEventListener("animationend", () => {
+            bomb2.remove();
+            bomb2Fired = false;
+            })
+        }
+
+        else if (bomb3Fired === false) {
+            bomb3Fired = true
+            bomb3.style.top = `${shipPosition.y}vh`;
+            bomb3.style.left = `${shipPosition.x}%`;
+            document.getElementById("gameTable").appendChild(bomb3);
+            bomb3.addEventListener("animationend", () => {
+            bomb3.remove();
+            bomb3Fired = false;
+            })
+        }
     }
 });
-
 
 
 //this function calculates a random speed/animation duration between 3 and 10 seconds
