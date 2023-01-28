@@ -1,5 +1,49 @@
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
 body {
-    background: linear-gradient(#C2B280 20%, #2B65EC 20%, #2B65EC 90%, #C2B280 90%)
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: linear-gradient(#C2B280 20%, #2B65EC 20%, #2B65EC 80%, #C2B280 80%)
+}
+
+@keyframes winAnimation {
+    0% {opacity: 0}
+    100% {opacity: 1}
+}
+
+.winScreen {
+    z-index: 40;
+    display: flex;
+    font-family: monospace;
+    justify-content: center;
+    align-items: center;
+    font-size: 13rem;
+    background: rgba(196, 151, 92, 0.5);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    animation-name: winAnimation;
+    animation-duration: 2s;
+}
+
+.loseScreen {
+    z-index: 40;
+    display: flex;
+    font-family: monospace;
+    justify-content: center;
+    align-items: center;
+    font-size: 13rem;
+    background: rgba(78, 122, 218, 0.5);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    animation-name: winAnimation;
+    animation-duration: 2s;
 }
 
 #gameTitle {
@@ -92,7 +136,7 @@ body {
     animation-duration: 0s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
-    animation-delay: 1s;
+    animation-delay: 100s;
 }
 
 @keyframes crabMoveDown {
@@ -112,7 +156,7 @@ body {
     animation-duration: 0s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
-    animation-delay: 1s;
+    animation-delay: 100s;
 }
 
 #controls {
@@ -135,7 +179,7 @@ body {
 
 #speedMult {
     outline: none;
-    font-size: 1rem;
+    font-size: 1.5rem;
     text-align: right;
     border: none;
     background-color:#ACD1AF;

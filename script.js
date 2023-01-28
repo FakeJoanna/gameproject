@@ -1,18 +1,29 @@
 //timer and game state initial flags
 
-let timeLeft = 30;
+let timeLeft = 100;
 let timer = document.getElementById("timer");
 let timerId
 let fired = false;
+let crabsDownwards = [...document.querySelectorAll(".animateDownwards")];
+let crabsUpwards = [...document.querySelectorAll(".animateUpwards")];
 
 //this function flags game start
 
 document.onkeydown = function gameStart () {
     if (fired === false) {
+        crabsDownwards.forEach(i => i.style.animationDelay = "1s");
+        crabsUpwards.forEach(i => i.style.animationDelay = "1s")
         reCalculateAnimationDuration();
         timerId = setInterval(timerCountdown, 1000);
         fired = true;
     }
+}
+
+//game over fuction
+
+function gameOver() {
+    document.getElementById("lose").innerHTML = "Game Over";
+    document.getElementById("lose").classList.add("loseScreen")
 }
 
 //this function controls the timer
@@ -20,7 +31,7 @@ document.onkeydown = function gameStart () {
 function timerCountdown() {
     if (timeLeft == -1) {
         clearInterval(timerId);
-        //game over splash screen
+        gameOver();
     }
 
     else {
@@ -28,6 +39,22 @@ function timerCountdown() {
         timeLeft--;
     }
 }
+
+//game win
+
+let crabs = [...document.getElementsByClassName("crabBottom")].concat([...document.getElementsByClassName("crabTop")])
+
+setInterval(WinCheck, 500);
+
+function WinCheck() {
+    let crabs = [...document.getElementsByClassName("crabBottom")].concat([...document.getElementsByClassName("crabTop")])
+    if (crabs.length === 0) {
+        document.getElementById("win").innerHTML = "You win!";
+        document.getElementById("win").classList.add("winScreen");
+        clearInterval(timerId);
+    }
+}
+
 
 //ship code
 
@@ -79,17 +106,17 @@ document.addEventListener("keydown", (keypress) => {
 //code for spawning 3 projectiles where ship is located
 
 let bomb1 = document.createElement("img");
-bomb1.setAttribute("src", "/images/placerholderbomb.png");
+bomb1.setAttribute("src", "/images/bomb.png");
 bomb1.classList.add("bomb");
 let bomb1Fired = false;
 
 let bomb2 = document.createElement("img");
-bomb2.setAttribute("src", "/images/placerholderbomb.png");
+bomb2.setAttribute("src", "/images/bomb.png");
 bomb2.classList.add("bomb");
 let bomb2Fired = false;
 
 let bomb3 = document.createElement("img");
-bomb3.setAttribute("src", "/images/placerholderbomb.png");
+bomb3.setAttribute("src", "/images/bomb.png");
 bomb3.classList.add("bomb");
 let bomb3Fired = false;
 
@@ -133,8 +160,6 @@ document.addEventListener("keyup", (keypress) => {
 
 //overlap function - collision
 
-let crabs = [...document.getElementsByClassName("crabBottom")].concat([...document.getElementsByClassName("crabTop")])
-
 bomb1.addEventListener("animationstart", () => {
     let bomb1Bound = bomb1.getBoundingClientRect();
     setTimeout(() => {
@@ -154,7 +179,7 @@ bomb2.addEventListener("animationstart", () => {
         for (let i = 0; i < crabs.length; i++) {
             let crabBound = crabs[i].getBoundingClientRect();
             if (bomb2Bound.right > crabBound.left && bomb2Bound.left < crabBound.right && bomb2Bound.bottom > crabBound.top && bomb2Bound.top < crabBound.bottom === true) {
-                crabs[i].remove();
+                crabs[i].remove()
                 return;
             }                       
         }
@@ -194,9 +219,6 @@ function updateValue() {
 
 /*this function queries all elements with animation classes
 and randomises them calling on randomSpeed*/
-
-let crabsDownwards = [...document.querySelectorAll(".animateDownwards")];
-let crabsUpwards = [...document.querySelectorAll(".animateUpwards")];
 
 function reCalculateAnimationDuration() {
     crabsDownwards.forEach(i => i.style.animationDuration = randomSpeed().toString() + "s");
