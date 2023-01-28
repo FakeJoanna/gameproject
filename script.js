@@ -131,6 +131,50 @@ document.addEventListener("keyup", (keypress) => {
 });
 
 
+//overlap function - collision
+
+let crabs = [...document.getElementsByClassName("crabBottom")].concat([...document.getElementsByClassName("crabTop")])
+
+bomb1.addEventListener("animationstart", () => {
+    let bomb1Bound = bomb1.getBoundingClientRect();
+    setTimeout(() => {
+        for (let i = 0; i < crabs.length; i++) {
+            let crabBound = crabs[i].getBoundingClientRect();
+            if (bomb1Bound.right > crabBound.left && bomb1Bound.left < crabBound.right && bomb1Bound.bottom > crabBound.top && bomb1Bound.top < crabBound.bottom === true) {
+                crabs[i].remove();
+                return;
+            }                       
+        }
+    }, 1000);
+})
+
+bomb2.addEventListener("animationstart", () => {
+    let bomb2Bound = bomb2.getBoundingClientRect();
+    setTimeout(() => {
+        for (let i = 0; i < crabs.length; i++) {
+            let crabBound = crabs[i].getBoundingClientRect();
+            if (bomb2Bound.right > crabBound.left && bomb2Bound.left < crabBound.right && bomb2Bound.bottom > crabBound.top && bomb2Bound.top < crabBound.bottom === true) {
+                crabs[i].remove();
+                return;
+            }                       
+        }
+    }, 2500);
+})
+
+bomb3.addEventListener("animationstart", () => {
+    let bomb3Bound = bomb3.getBoundingClientRect();
+    setTimeout(() => {
+        for (let i = 0; i < crabs.length; i++) {
+            let crabBound = crabs[i].getBoundingClientRect();
+            if (bomb3Bound.right > crabBound.left && bomb3Bound.left < crabBound.right && bomb3Bound.bottom > crabBound.top && bomb3Bound.top < crabBound.bottom === true) {
+                crabs[i].remove();
+                return;
+            }                       
+        }
+    }, 1000);
+})
+
+
 //this function calculates a random speed/animation duration between 3 and 10 seconds
 
 function randomSpeed() {
@@ -145,7 +189,7 @@ document.getElementById("speedMult").addEventListener("change", updateValue)
 
 function updateValue() {
     speedMultiplier = 1/document.getElementById("speedMult").value;
-    reroll();
+    reCalculateAnimationDuration();
 }
 
 /*this function queries all elements with animation classes
