@@ -106,17 +106,17 @@ document.addEventListener("keydown", (keypress) => {
 //code for spawning 3 projectiles where ship is located
 
 let bomb1 = document.createElement("img");
-bomb1.setAttribute("src", "/images/bomb.png");
+bomb1.setAttribute("src", "./images/bomb.png");
 bomb1.classList.add("bomb");
 let bomb1Fired = false;
 
 let bomb2 = document.createElement("img");
-bomb2.setAttribute("src", "/images/bomb.png");
+bomb2.setAttribute("src", "./images/bomb.png");
 bomb2.classList.add("bomb");
 let bomb2Fired = false;
 
 let bomb3 = document.createElement("img");
-bomb3.setAttribute("src", "/images/bomb.png");
+bomb3.setAttribute("src", "./images/bomb.png");
 bomb3.classList.add("bomb");
 let bomb3Fired = false;
 
